@@ -489,3 +489,33 @@ def conv_(lib):
     lib.infiniopDestroyConvDescriptor.argtypes = [
         infiniopOperatorDescriptor_t,
     ]
+@OpRegister.operator
+def sin_(lib):
+    lib.infiniopCreateSinDescriptor.restype = c_int32
+    lib.infiniopCreateSinDescriptor.argtypes = [
+        infiniopHandle_t,
+        POINTER(infiniopOperatorDescriptor_t),
+        infiniopTensorDescriptor_t,  # output descriptor
+        infiniopTensorDescriptor_t,  # input descriptor
+    ]
+
+    lib.infiniopGetSinWorkspaceSize.restype = c_int32
+    lib.infiniopGetSinWorkspaceSize.argtypes = [
+        infiniopOperatorDescriptor_t,
+        POINTER(c_size_t),
+    ]
+
+    lib.infiniopSin.restype = c_int32
+    lib.infiniopSin.argtypes = [
+        infiniopOperatorDescriptor_t,
+        c_void_p,
+        c_size_t,
+        c_void_p,  # output data
+        c_void_p,  # input data
+        c_void_p,  # stream or reserved
+    ]
+
+    lib.infiniopDestroySinDescriptor.restype = c_int32
+    lib.infiniopDestroySinDescriptor.argtypes = [
+        infiniopOperatorDescriptor_t,
+    ]
