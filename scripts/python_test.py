@@ -22,6 +22,9 @@ def run_tests(args):
         "rearrange.py",
         "rms_norm.py",
         "rope.py",
+        "sin.py",
+        "and.py",
+        "tanh.py",
         "sub.py",
         "swiglu.py",
     ]:

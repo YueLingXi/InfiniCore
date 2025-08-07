@@ -66,15 +66,37 @@ class TestTensor(CTensor):
                 torch_strides.append(strides[i])
             else:
                 torch_shape.append(shape[i])
+
+        # torch_dtype = to_torch_dtype(dt)
+
         if mode == "random":
+            # if torch_dtype == torch.bool:
+            #     # 对于布尔类型，先生成0和1的整数张量，再转换为布尔类型
+            #     self._torch_tensor = torch.randint(0, 2, torch_shape, 
+            #                                      dtype=torch.int32, 
+            #                                      device=torch_device_map[device])
+            #     self._torch_tensor = self._torch_tensor.to(torch.bool)
+            # else:
             self._torch_tensor = torch.rand(
                 torch_shape, dtype=to_torch_dtype(dt), device=torch_device_map[device]
             )
         elif mode == "zeros":
+            # if torch_dtype == torch.bool:
+            #     # 对于布尔类型，zeros对应False
+            #     self._torch_tensor = torch.zeros(
+            #         torch_shape, dtype=torch.bool, device=torch_device_map[device]
+            #     )
+            # else:
             self._torch_tensor = torch.zeros(
                 torch_shape, dtype=to_torch_dtype(dt), device=torch_device_map[device]
             )
         elif mode == "ones":
+            # if torch_dtype == torch.bool:
+            #     # 对于布尔类型，ones对应True
+            #     self._torch_tensor = torch.ones(
+            #         torch_shape, dtype=torch.bool, device=torch_device_map[device]
+            #     )
+            # else:
             self._torch_tensor = torch.ones(
                 torch_shape, dtype=to_torch_dtype(dt), device=torch_device_map[device]
             )
@@ -148,6 +170,8 @@ def to_torch_dtype(dt: InfiniDtype, compatability_mode=False):
         return torch.int32 if compatability_mode else torch.uint32
     elif dt == InfiniDtype.U64:
         return torch.int64 if compatability_mode else torch.uint64
+    # elif dt == InfiniDtype.BOOL:
+    #     return torch.bool
     else:
         raise ValueError("Unsupported data type")
 
@@ -338,10 +362,13 @@ def debug(actual, desired, atol=0, rtol=1e-2, equal_nan=False, verbose=True):
 
 def filter_tensor_dtypes_by_device(device, tensor_dtypes):
     if device in (InfiniDeviceEnum.CPU, InfiniDeviceEnum.NVIDIA):
+        # 过滤掉 BF16 数据类型，因为其他设备可能不支持
+        # return [dt for dt in tensor_dtypes if dt != InfiniDtype.BF16]
         return tensor_dtypes
     else:
         # 过滤掉 torch.bfloat16
         return [dt for dt in tensor_dtypes if dt != torch.bfloat16]
+
 
 
 def debug_all(

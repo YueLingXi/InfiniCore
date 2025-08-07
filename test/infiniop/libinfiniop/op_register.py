@@ -489,3 +489,97 @@ def conv_(lib):
     lib.infiniopDestroyConvDescriptor.argtypes = [
         infiniopOperatorDescriptor_t,
     ]
+
+@OpRegister.operator
+def and_(lib):
+    lib.infiniopCreateAndDescriptor.restype = c_int32
+    lib.infiniopCreateAndDescriptor.argtypes = [
+        infiniopHandle_t,
+        POINTER(infiniopOperatorDescriptor_t),
+        infiniopTensorDescriptor_t,
+        infiniopTensorDescriptor_t,
+        infiniopTensorDescriptor_t,
+    ]
+
+    lib.infiniopGetAndWorkspaceSize.restype = c_int32
+    lib.infiniopGetAndWorkspaceSize.argtypes = [
+        infiniopOperatorDescriptor_t,
+        POINTER(c_size_t),
+    ]
+
+    lib.infiniopAnd.restype = c_int32
+    lib.infiniopAnd.argtypes = [
+        infiniopOperatorDescriptor_t,
+        c_void_p,
+        c_size_t,
+        c_void_p,
+        c_void_p,
+        c_void_p,
+        c_void_p,
+    ]
+
+    lib.infiniopDestroyAndDescriptor.restype = c_int32
+    lib.infiniopDestroyAndDescriptor.argtypes = [
+        infiniopOperatorDescriptor_t,
+    ]
+@OpRegister.operator
+def sin_(lib):
+    lib.infiniopCreateSinDescriptor.restype = c_int32
+    lib.infiniopCreateSinDescriptor.argtypes = [
+        infiniopHandle_t,
+        POINTER(infiniopOperatorDescriptor_t),
+        infiniopTensorDescriptor_t,  # output descriptor
+        infiniopTensorDescriptor_t,  # input descriptor
+    ]
+
+    lib.infiniopGetSinWorkspaceSize.restype = c_int32
+    lib.infiniopGetSinWorkspaceSize.argtypes = [
+        infiniopOperatorDescriptor_t,
+        POINTER(c_size_t),
+    ]
+
+    lib.infiniopSin.restype = c_int32
+    lib.infiniopSin.argtypes = [
+        infiniopOperatorDescriptor_t,
+        c_void_p,
+        c_size_t,
+        c_void_p,  # output data
+        c_void_p,  # input data
+        c_void_p,  # stream or reserved
+    ]
+
+    lib.infiniopDestroySinDescriptor.restype = c_int32
+    lib.infiniopDestroySinDescriptor.argtypes = [
+        infiniopOperatorDescriptor_t,
+    ]
+
+@OpRegister.operator
+def tanh_(lib):
+    lib.infiniopCreateTanhDescriptor.restype = c_int32
+    lib.infiniopCreateTanhDescriptor.argtypes = [
+        infiniopHandle_t,
+        POINTER(infiniopOperatorDescriptor_t),
+        infiniopTensorDescriptor_t,  # output descriptor
+        infiniopTensorDescriptor_t,  # input descriptor
+    ]
+
+    lib.infiniopGetTanhWorkspaceSize.restype = c_int32
+    lib.infiniopGetTanhWorkspaceSize.argtypes = [
+        infiniopOperatorDescriptor_t,
+        POINTER(c_size_t),
+    ]
+
+    lib.infiniopTanh.restype = c_int32
+    lib.infiniopTanh.argtypes = [
+        infiniopOperatorDescriptor_t,
+        c_void_p,
+        c_size_t,
+        c_void_p,  # output data
+        c_void_p,  # input data
+        c_void_p,  # stream or reserved
+    ]
+
+    lib.infiniopDestroyTanhDescriptor.restype = c_int32
+    lib.infiniopDestroyTanhDescriptor.argtypes = [
+        infiniopOperatorDescriptor_t,
+    ]
