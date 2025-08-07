@@ -37,6 +37,7 @@ DECLARE_INFINIOP_TEST(sin)
         REGISTER_INFINIOP_TEST(gemm)           \
         REGISTER_INFINIOP_TEST(random_sample)  \
         REGISTER_INFINIOP_TEST(add)            \
+         REGISTER_INFINIOP_TEST(and_op)         \
         REGISTER_INFINIOP_TEST(mul)            \
         REGISTER_INFINIOP_TEST(clip)           \
         REGISTER_INFINIOP_TEST(swiglu)         \

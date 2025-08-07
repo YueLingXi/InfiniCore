@@ -23,6 +23,8 @@ def run_tests(args):
         "rms_norm.py",
         "rope.py",
         "sin.py",
+        "and.py",
+        "tanh.py",
         "sub.py",
         "swiglu.py",
     ]:

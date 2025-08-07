@@ -3,6 +3,7 @@
 
 #include "infiniop/handle.h"
 #include "infiniop/ops/add.h"
+#include "infiniop/ops/and.h"
 #include "infiniop/ops/attention.h"
 #include "infiniop/ops/causal_softmax.h"
 #include "infiniop/ops/clip.h"
@@ -16,6 +17,7 @@
 #include "infiniop/ops/rope.h"
 #include "infiniop/ops/sub.h"
 #include "infiniop/ops/sin.h"
+#include "infiniop/ops/tanh.h"
 #include "infiniop/ops/swiglu.h"
 #include "infiniop/tensor_descriptor.h"
 
